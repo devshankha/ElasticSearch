@@ -32,7 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
-public class App {
+public class Application {
 	private static final String HOST = "localhost";
 	private static final int PORT_ONE = 9200;
 	private static final int PORT_TWO = 9201;
