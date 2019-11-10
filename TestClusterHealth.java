@@ -10,17 +10,12 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.cluster.health.ClusterHealthStatus;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class TestClusterHealth {
 	private static final String HOST = "localhost";
 	private static final int PORT_ONE = 9200;
 	private static final int PORT_TWO = 9201;
 	private static final String SCHEME = "http";
-
 	private static RestHighLevelClient restHighLevelClient;
-	 private static ObjectMapper objectMapper = new ObjectMapper();
-
 	private static final String INDEX = "persondata";
 	private static final String TYPE = "person";
 
@@ -44,19 +39,20 @@ public class TestClusterHealth {
 		restHighLevelClient.close();
 		restHighLevelClient = null;
 	}
+
 	public static void main(String[] args) throws IOException {
-		  ClusterHealthRequest request = new ClusterHealthRequest();
-	        RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
-			RequestOptions opt = builder.build();
-			makeConnection();
-			ClusterHealthResponse response =restHighLevelClient.cluster().health(request, opt);
-	       String clusterName = response.getClusterName(); 
-	       ClusterHealthStatus status = response.getStatus(); 
-	        System.out.println(clusterName);
-	        System.out.println(status);
-	        System.out.println("------------");
-	        closeConnection();
-		
+		ClusterHealthRequest request = new ClusterHealthRequest();
+		RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
+		RequestOptions opt = builder.build();
+		makeConnection();
+		ClusterHealthResponse response = restHighLevelClient.cluster().health(request, opt);
+		String clusterName = response.getClusterName();
+		ClusterHealthStatus status = response.getStatus();
+		System.out.println(clusterName);
+		System.out.println(status);
+		System.out.println("------------");
+		closeConnection();
+
 	}
 
 }
