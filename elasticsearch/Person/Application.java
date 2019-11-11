@@ -75,6 +75,15 @@ public class Application {
 			RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
 			RequestOptions opt = builder.build();
 			IndexResponse response = restHighLevelClient.index(indexRequest,opt);
+			restHighLevelClient.indexAsync(indexRequest,opt, new ActionListener<IndexResponse>() {
+                public void onResponse(IndexResponse indexResponse) {
+                    // called when the operation is successfully completed
+                }
+
+                public void onFailure(Exception e) {
+                    // called on failure
+                }
+            });
 		} catch (ElasticsearchException e) {
 			e.getDetailedMessage();
 		} catch (java.io.IOException ex) {
